@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{%block title%} Order a Pizza {% endblock title%}
+
+{% block content%}
+<div class="container">
+    <h1>Order a Pizza</h1>
+
+    <h2>{{note}}</h2>
+    {% if created_pizza_pk %}
+    <a href="{% url 'pizzas:edit_order' created_pizza_pk %}">Edit Your Order</a>
+    {% endif %}
+
+    <!-- enctype="multipart/form-data" -->
+    <!-- <form action="{% url 'pizzas:order' %}" method="POST" novalidate>
+        {% csrf_token %}
+        {% for field in  form%}
+        <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+        </div>
+        {% endfor %}
+
+        {% comment %} {{form.as_p}} {% endcomment %}
+
+        {% comment %} <table>
+            {{form.as_table}}
+        </table> {% endcomment %}
+
+        {% comment %} <ol>
+            {{form.as_ul}}
+        </ol> {% endcomment %}
+
+
+        {% comment %} {{ form.topping1.label_tag }}
+        {{ form.topping1 }}
+        {{ form.topping1.errors }} {% endcomment %}
+
+        <input type="submit" value="Order Now">
+    </form> -->
+
+    <!-- form start -->
+    {% url 'pizzas:order' as action_path %}
+    {% include 'form_template.html' with action_path=action_path button_text="Order Now" %}
+    
+    <br>
+    Want more than one Pizza?
+    <form action="{% url 'pizzas:more_pizzas' %}" method="GET">
+        {% csrf_token %}
+        {{multiple_form}}
+        <input type="submit" value="Get Pizzas">
+    </form>
+</div>
+{% endblock content %}

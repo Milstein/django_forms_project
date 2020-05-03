@@ -1,0 +1,19 @@
+<form role="form" action="{{ action_path }}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+        {% for field in form %}
+        {% if field.is_hidden %}
+        {{ field }}
+        {% else %}
+        <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+    <div class="card-footer">
+        <button type="submit" class="w-75 ml-5 text-center my-2 btn btn-danger text-white">{{ button_text }}</button>
+    </div>
+</form>

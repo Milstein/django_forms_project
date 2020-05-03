@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block title%} Edit Pizza {% endblock title%}
+
+{% block content%}
+<div class="container">
+    <h1>Edit Pizza:</h1>
+    <h2>{{ note }}</h2>
+    <form action="{% url 'pizzas:edit_order' pizza.id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Update Your Order">
+    </form>
+</div>
+{% endblock content %}
