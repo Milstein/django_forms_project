@@ -20,7 +20,11 @@
         <div class="form-group">
             {{ field.errors }}
             {{ field.label_tag }}
-            {% render_field field class="form-control" %}
+            {% render_field field class="form-control" %} 
+            OR,
+            {{ field|add_class:'form-control' }}
+
+            <!-- https://simpleisbetterthancomplex.com/2015/12/04/package-of-the-week-django-widget-tweaks.html -->
         </div>
         {% endfor %}
 
