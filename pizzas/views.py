@@ -36,6 +36,8 @@ def order(request):
             'created_pizza_pk': created_pizza_pk,
             'multiple_form': multiple_form
         }
+
+        print(multiple_form)
         
         return render(request, 'pizzas/order.html', context)
     
